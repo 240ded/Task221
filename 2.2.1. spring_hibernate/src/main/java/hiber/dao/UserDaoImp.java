@@ -31,7 +31,7 @@ public class UserDaoImp implements UserDao {
 
    @Override
    public List<User> getUserWithCarByModelAndSeries(String name, int series) {
-      String hql = "From User as u INNER JOIN FETCH u.userCar as uc WHERE uc.model = :name and uc.series = :series";
+      String hql = "from User as u left join fetch u.userCar as uc where uc.model = :name and uc.series = :series";
       Query query = sessionFactory.getCurrentSession().createQuery(hql);
       query.setParameter("name", name);
       query.setParameter("series", series);
